@@ -1,0 +1,1 @@
+Fichero dedicado a las tareas de bases de datos relacionales.
