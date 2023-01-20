@@ -67,6 +67,8 @@ Se plantea la creación de una BBDD para una empresa de tecnología.
 
     - Obtén un listado que incluya los nombres de los clientes de edades comprendidas entre 10 y 25 y de los mayores de 50 años. Da una solución con BETWEEN y otra sin BETWEEN.
 
+    <img src="img/16.png" height="400">
+
     - Saca un listado con los comercios de Sevilla y Madrid. No se admiten valores duplicados.
 
     <img src="img/17.png" height="400">
@@ -105,43 +107,84 @@ Se plantea la creación de una BBDD para una empresa de tecnología.
 
     - Genera un listado de los programas que desarrolla Oracle.
 
+    <img src="img/26.png" height="400">
+
     - ¿Qué comercios distribuyen Windows?
+
+    <img src="img/27.png" height="400">
 
     - Genera un listado de los programas y cantidades que se han distribuido a El Corte Inglés de Madrid.
 
+    <img src="img/28.png" height="400">
+
     - ¿Qué fabricante ha desarrollado Freddy Hardest?
+
+    <img src="img/29.png" height="400">
 
     - Selecciona el nombre de los programas que se registran por Internet.
 
+    <img src="img/30.png" height="400">
+
     - ¿Qué medios ha utilizado para registrarse Pepe Pérez?
+
+    <img src="img/31.png" height="400">
 
     - ¿Qué usuarios han optado por Internet como medio de registro?
 
+    <img src="img/32.png" height="400">
+
     - ¿Qué programas han recibido registros por tarjeta postal?
 
-    - ¿En qué localidades se han vendido productos que se han registrado por Internet?
+    <img src="img/33.png" height="400">
+
+    - ¿En qué localidades se han vendido productos que se han registrado
+    por Internet?
+
+    <img src="img/34.png" height="400">
 
     - Obtén un listado de los nombres de las personas que se han registrado por Internet, junto al nombre de los programas para los que ha efectuado el registro.
 
+    <img src="img/35.png" height="400">
+
     - Genera un listado en el que aparezca cada cliente junto al programa que ha registrado, el medio con el que lo ha hecho y el comercio en el que lo ha adquirido.
+
+    <img src="img/36.png" height="400">
 
     - Genera un listado con las ciudades en las que se pueden obtener los productos de Oracle.
 
+    <img src="img/37.png" height="400">
+
     - Obtén el nombre de los usuarios que han registrado Access XP.
+
+    <img src="img/38.png" height="400">
 
     - Nombre de aquellos fabricantes cuyo país es el mismo que ʻOracleʼ. (Subconsulta).
 
+    <img src="img/39.png" height="400">
+
     - Nombre de aquellos clientes que tienen la misma edad que Pepe Pérez. (Subconsulta).
+
+    <img src="img/40.png" height="400">
 
     - Genera un listado con los comercios que tienen su sede en la misma ciudad que tiene el comercio ʻFNACʼ. (Subconsulta).
 
+    <img src="img/41.png" height="400">
+
     - Nombre de aquellos clientes que han registrado un producto de la misma forma que el cliente ʻPepe Pérezʼ. (Subconsulta).
+
+    <img src="img/42.png" height="400">
 
     - Obtener el número de programas que hay en la tabla programas. 46 Calcula el número de clientes cuya edad es mayor de 40 años.
 
+    <img src="img/43.png" height="400">
+
     - Calcula el número de productos que ha vendido el establecimiento cuyo CIF es 1.
 
+    <img src="img/44.png" height="400">
+
     - Calcula la media de programas que se venden cuyo código es 7.
+
+    <img src="img/45.png" height="400">
 
     - Calcula la mínima cantidad de programas de código 7 que se ha vendido.
 
