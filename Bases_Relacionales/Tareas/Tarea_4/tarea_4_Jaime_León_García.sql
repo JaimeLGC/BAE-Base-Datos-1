@@ -6,6 +6,29 @@
 
 -- Realiza la inserción de, al menos, 10 empleados.
 
+INSERT INTO Empleado VALUES ('1','11','Juan','López');
+INSERT INTO Empleado VALUES ('2','12','Jose','López');
+INSERT INTO Empleado VALUES ('3','13','Miguel','Martin');
+INSERT INTO Empleado VALUES ('4','14','Luis','López');
+INSERT INTO Empleado VALUES ('5','15','Sara','Padrón');
+INSERT INTO Empleado VALUES ('6','16','Marta','Martínez');
+INSERT INTO Empleado VALUES ('7','17','Juan','García');
+INSERT INTO Empleado VALUES ('8','18','Juan','Pérez');
+INSERT INTO Empleado VALUES ('9','19','Jose','Pérez');
+INSERT INTO Empleado VALUES ('10','10','Luis','Pérez');
+INSERT INTO Empleado VALUES ('11','00000000','Esther','Vazquez');
+INSERT INTO Empleado VALUES ('1','11','Juan','López');
+INSERT INTO Empleado VALUES ('2','12','Jose','López');
+INSERT INTO Empleado VALUES ('3','13','Miguel','Martin');
+INSERT INTO Empleado VALUES ('4','14','Luis','López');
+INSERT INTO Empleado VALUES ('5','15','Sara','Padrón');
+INSERT INTO Empleado VALUES ('6','16','Marta','Martínez');
+INSERT INTO Empleado VALUES ('7','17','Juan','García');
+INSERT INTO Empleado VALUES ('8','18','Juan','Pérez');
+INSERT INTO Empleado VALUES ('9','19','Jose','Pérez');
+INSERT INTO Empleado VALUES ('10','10','Luis','Pérez');
+INSERT INTO Empleado VALUES ('11','00000000','Esther','Vazquez');
+
 -- Obtener los apellidos de los empleados.
 
 SELECT apellido FROM Empleado
@@ -83,17 +106,3 @@ SELECT id, count(*) FROM Empleado GROUP BY id
 
 
 -- Despedir a todos los empleados.
-
-
-
-INSERT INTO Empleado VALUES ('11','Juan','López');
-INSERT INTO Empleado VALUES ('12','Jose','López');
-INSERT INTO Empleado VALUES ('13','Miguel','Martin');
-INSERT INTO Empleado VALUES ('14','Luis','López');
-INSERT INTO Empleado VALUES ('15','Sara','Padrón');
-INSERT INTO Empleado VALUES ('16','Marta','Martínez');
-INSERT INTO Empleado VALUES ('17','Juan','García');
-INSERT INTO Empleado VALUES ('18','Juan','Pérez');
-INSERT INTO Empleado VALUES ('19','Jose','Pérez');
-INSERT INTO Empleado VALUES ('10','Luis','Pérez');
-INSERT INTO Empleado VALUES ('00000000','Esther','Vazquez');
