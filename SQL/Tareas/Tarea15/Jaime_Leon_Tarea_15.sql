@@ -50,7 +50,6 @@
     SELECT DISTINCT id_cliente from pedido;
         
     -- Devuelve un listado de todos los pedidos que se realizaron durante el año 2017, cuya cantidad total sea superior a 500€.
-
     -- Con expresion regular
     SELECT * from pedido where fecha regexp "^2017" and total > 500;
 
