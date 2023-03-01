@@ -254,11 +254,62 @@ select codigo_cliente from pago where fecha_pago like '2008%';
 -- Subconsultas con IN y NOT IN
 
 --     Devuelve el nombre, apellido1 y cargo de los empleados que no representen a ningún cliente.
-
+select e.nombre, e.apellido1 from empleado as e left join cliente as c on codigo_empleado = codigo_empleado_rep_ventas where codigo_empleado not in (select codigo_empleado_rep_ventas from cliente);
+/*
+┌─────────────┬────────────┐
+│   nombre    │ apellido1  │
+├─────────────┼────────────┤
+│ Marcos      │ Magaña     │
+│ Ruben       │ López      │
+│ Alberto     │ Soria      │
+│ Maria       │ Solís      │
+│ Juan Carlos │ Ortiz      │
+│ Carlos      │ Soria      │
+│ Hilario     │ Rodriguez  │
+│ David       │ Palma      │
+│ Oscar       │ Palma      │
+│ Francois    │ Fignon     │
+│ Laurent     │ Serra      │
+│ Hilary      │ Washington │
+│ Marcus      │ Paxton     │
+│ Nei         │ Nishikori  │
+│ Narumi      │ Riko       │
+│ Takuma      │ Nomura     │
+│ Amy         │ Johnson    │
+│ Larry       │ Westfalls  │
+│ John        │ Walton     │
+│ Kevin       │ Fallmer    │
+└─────────────┴────────────┘
+*/
 --     Devuelve un listado que muestre solamente los clientes que no han realizado ningún pago.
+select c.* from cliente as c left join pago as p on c.codigo_cliente = p.codigo_cliente where c.codigo_cliente not in (select p.codigo_cliente from pago);
 
 --     Devuelve un listado que muestre solamente los clientes que sí han realizado algún pago.
-
+select distinct c.nombre_cliente from cliente as c left join pago as p on c.codigo_cliente = p.codigo_cliente where c.codigo_cliente in (select p.codigo_cliente from pago);
+/*
+┌────────────────────────────────┐
+│         nombre_cliente         │
+├────────────────────────────────┤
+│ GoldFish Garden                │
+│ Gardening Associates           │
+│ Gerudo Valley                  │
+│ Tendo Garden                   │
+│ Beragua                        │
+│ Naturagua                      │
+│ Camunas Jardines S.L.          │
+│ Dardena S.A.                   │
+│ Jardin de Flores               │
+│ Flores Marivi                  │
+│ Golf S.A.                      │
+│ Sotogrande                     │
+│ Jardines y Mansiones Cactus SL │
+│ Jardinerías Matías SL          │
+│ Agrojardin                     │
+│ Jardineria Sara                │
+│ Tutifruti S.A                  │
+│ El Jardin Viviente S.L         │
+└────────────────────────────────┘
+*/
 --     Devuelve un listado de los productos que nunca han aparecido en un pedido.
 
 --     Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos empleados que no sean representante de ventas de ningún cliente.
