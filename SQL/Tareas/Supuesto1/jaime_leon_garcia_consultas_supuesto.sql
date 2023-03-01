@@ -142,7 +142,20 @@ select p.nombre, p.precio from producto as p join fabricante as f on p.codigo_fa
 └─────────────────────────────────┴────────┘
 */
 -- 14. Devuelve un listado con el identificador y el nombre de fabricante, solamente de aquellos fabricantes que tienen productos asociados en la base de datos.
-
+select distinct f.codigo, f.nombre from fabricante as f left join producto as p on f.codigo = p.codigo_fabricante where p.codigo_fabricante is not null;┌────────┬─────────────────┐
+/*
+┌────────┬─────────────────┐
+│ codigo │     nombre      │
+├────────┼─────────────────┤
+│ 5      │ Seagate         │
+│ 6      │ Crucial         │
+│ 4      │ Samsung         │
+│ 7      │ Gigabyte        │
+│ 1      │ Asus            │
+│ 2      │ Lenovo          │
+│ 3      │ Hewlett-Packard │
+└────────┴─────────────────┘
+*/
 -- Consultas multitabla (LEFT/RIGHT JOIN 0,2) Obligatorio aprobar
 
 -- 15. Devuelve un listado de todos los fabricantes que existen en la base de datos, junto con los productos que tiene cada uno de ellos. El listado deberá mostrar también aquellos fabricantes que no tienen productos asociados.
@@ -196,7 +209,16 @@ select f.nombre, max(precio), min(precio), avg(precio) from producto as p join f
 -- 18. Muestra el precio máximo, precio mínimo, precio medio y el número total de productos de los fabricantes que tienen un precio medio superior a 200€. No es necesario mostrar el nombre del fabricante, con el identificador del fabricante es suficiente.
 
 -- 19. Muestra el nombre de cada fabricante, junto con el precio máximo, precio mínimo, precio medio y el número total de productos de los fabricantes que tienen un precio medio superior a 200€. Es necesario mostrar el nombre del fabricante.
-
+select f.nombre, max(precio), min(precio), avg(precio) from producto as p join fabricante as f on p.codigo_fabricante = f.codigo group by f.nombre having avg(precio) > 200;
+/*
+┌─────────┬─────────────┬─────────────┬─────────────┐
+│ nombre  │ max(precio) │ min(precio) │ avg(precio) │
+├─────────┼─────────────┼─────────────┼─────────────┤
+│ Asus    │ 245.99      │ 202.0       │ 223.995     │
+│ Crucial │ 755.0       │ 120.0       │ 437.5       │
+│ Lenovo  │ 559.0       │ 444.0       │ 501.5       │
+└─────────┴─────────────┴─────────────┴─────────────┘
+*/
 -- 20. Devuelve un listado con los nombres de los fabricantes y el número de productos que tiene cada uno con un precio superior o igual a 220 €. El listado debe mostrar el nombre de todos los fabricantes, es decir, si hay algún fabricante que no tiene productos con un precio superior o igual a 220€ deberá aparecer en el listado con un valor igual a 0 en el número de productos.
 select f.nombre, count(p.codigo) from fabricante as f left join producto as p on f.codigo = p.codigo_fabricante where precio >= 220 group by f.nombre;
 /*
@@ -209,9 +231,29 @@ select f.nombre, count(p.codigo) from fabricante as f left join producto as p on
 └─────────┴─────────────────┘
 */
 -- 21. Devuelve un listado con los nombres de los fabricantes donde la suma del precio de todos sus productos es superior a 1000 €.
-
+select f.nombre from producto as p join fabricante as f on p.codigo_fabricante = f.codigo group by f.nombre having sum(precio) > 1000;
+/*
+┌────────┐
+│ nombre │
+├────────┤
+│ Lenovo │
+└────────┘
+*/
 -- 22. Devuelve un listado con el nombre del producto más caro que tiene cada fabricante. El resultado debe tener tres columnas: nombre del producto, precio y nombre del fabricante. El resultado tiene que estar ordenado alfabéticamente de menor a mayor por el nombre del fabricante.
-
+select f.nombre, max(p.nombre), precio from producto as p join fabricante as f on p.codigo_fabricante = f.codigo group by f.nombre;
+/*
+┌─────────────────┬─────────────────────────────────┬────────┐
+│     nombre      │          max(p.nombre)          │ precio │
+├─────────────────┼─────────────────────────────────┼────────┤
+│ Asus            │ Monitor 27 LED Full HD          │ 245.99 │
+│ Crucial         │ Memoria RAM DDR4 8GB            │ 120.0  │
+│ Gigabyte        │ GeForce GTX 1050Ti              │ 185.0  │
+│ Hewlett-Packard │ Impresora HP Laserjet Pro M26nw │ 180.0  │
+│ Lenovo          │ Portátil Yoga 520               │ 559.0  │
+│ Samsung         │ Disco SSD 1 TB                  │ 150.99 │
+│ Seagate         │ Disco duro SATA3 1TB            │ 86.99  │
+└─────────────────┴─────────────────────────────────┴────────┘
+*/
 --  Subconsultas (En la cláusula WHERE 0,9 obligatorio aprobar)
 
 -- 23. Con operadores básicos de comparación
@@ -311,9 +353,9 @@ select f.nombre from fabricante as f left join producto as p on f.codigo = p.cod
 -- Subconsultas con EXISTS y NOT EXISTS (0,2 obligatorio aprobar)
 
 -- 34. Devuelve los nombres de los fabricantes que tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
-
+select nombre from fabricante as f where exists (select 1 from producto where f.codigo = codigo_fabricante);
 -- 35. Devuelve los nombres de los fabricantes que no tienen productos asociados. (Utilizando EXISTS o NOT EXISTS).
-
+select nombre from fabricante as f where not exists (select * from producto where f.codigo = codigo_fabricante);
 --  Subconsultas correlacionadas (0,5 obligatorio aprobar)
 
 -- 36. Lista el nombre de cada fabricante con el nombre y el precio de su producto más caro.
