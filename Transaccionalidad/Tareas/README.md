@@ -1,0 +1,1 @@
+Tareas relacionadas con el tratamiento de los datos y la transaccionalidad.

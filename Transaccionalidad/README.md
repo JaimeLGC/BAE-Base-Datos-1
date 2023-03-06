@@ -1,0 +1,1 @@
+Fichero dedicado al tratamiento de los datos y la transaccionalidad en las bases de datos relacionales

@@ -1,0 +1,1 @@
+Ejermplo de transaccionalidad en base de datos relacional
