@@ -1,0 +1,1 @@
+Fichero dedicado a la practica de consultas SQL
