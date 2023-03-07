@@ -1,0 +1,1 @@
+Fichero dedicado al uso de mysql
