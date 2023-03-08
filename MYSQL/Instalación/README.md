@@ -23,37 +23,41 @@ Te debería devolver estas líneas al final:
 
 `mysql -u root`
 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 8
-Server version: 8.0.32-0ubuntu0.22.04.2 (Ubuntu)
+Comprueba que se ha abierto correctamente:
+
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 8
+    Server version: 8.0.32-0ubuntu0.22.04.2 (Ubuntu)
 
 `exit;`
 
-Bye
+    Bye
 
 `sudo mysql_secure_installation`
 
-Securing the MySQL server deployment.
+Nos explicará el medio de validación de contraseñas y nos preguntará si queremos proceder
 
-Connecting to MySQL using a blank password.
+    Securing the MySQL server deployment.
 
-VALIDATE PASSWORD COMPONENT can be used to test passwords
-and improve security. It checks the strength of password
-and allows the users to set only those passwords which are
-secure enough. Would you like to setup VALIDATE PASSWORD component?
+    Connecting to MySQL using a blank password.
+
+    VALIDATE PASSWORD COMPONENT can be used to test passwords
+    and improve security. It checks the strength of password
+    and allows the users to set only those passwords which are
+    secure enough. Would you like to setup VALIDATE PASSWORD component?
 
 `Y o y`
 
-There are three levels of password validation policy:
+    There are three levels of password validation policy:
 
-LOW    Length >= 8
-MEDIUM Length >= 8, numeric, mixed case, and special characters
-STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
+    LOW    Length >= 8
+    MEDIUM Length >= 8, numeric, mixed case, and special characters
+    STRONG Length >= 8, numeric, mixed case, special characters and dictionary                  file
 
-Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 
+    Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 
 
 `2`
 
-Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) :
+    Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) :
 
 `Y`
