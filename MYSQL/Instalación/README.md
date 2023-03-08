@@ -10,10 +10,14 @@ El primer paso será actualizar el indice de paquetes de nuestro servidor
 
 Te debería devolver estas líneas al final:
 
-    Reading package lists... Done
-    Building dependency tree... Done
-    Reading state information... Done
-    228 packages can be upgraded. Run 'apt list --upgradable' to see them.
+---
+
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+228 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
+---
 
 Ahora instalamos el paquete mysql-server
 
@@ -21,9 +25,9 @@ Ahora instalamos el paquete mysql-server
 
 Te debería devolver estas líneas al final:
 
-    Setting up mysql-server (8.0.32-0ubuntu0.22.04.2) ...
-    Processing triggers for man-db (2.10.2-1) ...
-    Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+Setting up mysql-server (8.0.32-0ubuntu0.22.04.2) ...
+Processing triggers for man-db (2.10.2-1) ...
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
 
     sudo su
 
