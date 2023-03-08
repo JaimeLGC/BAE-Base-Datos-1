@@ -1,6 +1,12 @@
+## Instalación de mysql en sistema Ubuntu
+
+En esta guía veremos los paso para la instalación de mysql en un sistema ubuntu a 08 de marzo de 2023.
+
+Podreis ver todos los pasos acompañados de las las líneas a escribir y unas líneas de código que nos servirán para comprar los resultados obtenidos y comprobar que la instalación es correcta.
+
 El primer paso será actualizar el indice de paquetes de nuestro servidor
 
-'sudo apt update'
+- `sudo apt update`
 
 Te debería devolver estas líneas al final:
 
