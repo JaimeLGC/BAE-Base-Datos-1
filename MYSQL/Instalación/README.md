@@ -15,6 +15,7 @@ Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
 228 packages can be upgraded. Run 'apt list --upgradable' to see them.
+
 ---
 
 Ahora instalamos el paquete mysql-server
