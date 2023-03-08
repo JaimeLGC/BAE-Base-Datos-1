@@ -10,10 +10,10 @@ El primer paso será actualizar el indice de paquetes de nuestro servidor
 
 Te debería devolver estas líneas al final:
 
-##### Reading package lists... Done
-##### Building dependency tree... Done
-##### Reading state information... Done
-##### 228 packages can be upgraded. Run 'apt list --upgradable' to see them.
+    Reading package lists... Done
+    Building dependency tree... Done
+    Reading state information... Done
+    228 packages can be upgraded. Run 'apt list --upgradable' to see them.
 
 Ahora instalamos el paquete mysql-server
 
@@ -21,9 +21,9 @@ Ahora instalamos el paquete mysql-server
 
 Te debería devolver estas líneas al final:
 
-Setting up mysql-server (8.0.32-0ubuntu0.22.04.2) ...
-Processing triggers for man-db (2.10.2-1) ...
-Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
+    Setting up mysql-server (8.0.32-0ubuntu0.22.04.2) ...
+    Processing triggers for man-db (2.10.2-1) ...
+    Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
 
     sudo su
 
@@ -31,9 +31,9 @@ Processing triggers for libc-bin (2.35-0ubuntu3.1) ...
 
 Comprueba que se ha abierto correctamente:
 
-Welcome to the MySQL monitor.  Commands end with ; or \g.
-Your MySQL connection id is 8
-Server version: 8.0.32-0ubuntu0.22.04.2 (Ubuntu)
+    Welcome to the MySQL monitor.  Commands end with ; or \g.
+    Your MySQL connection id is 8
+    Server version: 8.0.32-0ubuntu0.22.04.2 (Ubuntu)
 
     exit;
 
@@ -43,23 +43,27 @@ Bye
 
 Nos explicará el medio de validación de contraseñas y nos preguntará si queremos proceder
 
-VALIDATE PASSWORD COMPONENT can be used to test passwords
-and improve security. It checks the strength of password
-and allows the users to set only those passwords which are
-secure enough. Would you like to setup VALIDATE PASSWORD component?
+    VALIDATE PASSWORD COMPONENT can be used to test passwords
+    and improve security. It checks the strength of password
+    and allows the users to set only those passwords which are
+    secure enough. Would you like to setup VALIDATE PASSWORD component?
 
-    Y o y
+Escribimos 'Y' o 'y'
 
-There are three levels of password validation policy:
+Nos devuelve:
 
-LOW    Length >= 8
-MEDIUM Length >= 8, numeric, mixed case, and special characters
-STRONG Length >= 8, numeric, mixed case, special characters and dictionary files
+    There are three levels of password validation policy:
 
-Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 
+    LOW    Length >= 8
+    MEDIUM Length >= 8, numeric, mixed case, and special characters
+    STRONG Length >= 8, numeric, mixed case, special characters and dictionary files
 
-    2
+    Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 
 
-Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) :
+Escribimos '2'
 
-    Y
+Nos devuelve
+
+    Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) :
+
+Escribimos 'Y'
