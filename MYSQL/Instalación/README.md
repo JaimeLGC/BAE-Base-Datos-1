@@ -39,6 +39,12 @@ Comprueba que se ha abierto correctamente:
 
 Bye
 
+Ejecutamos la secuencia de comandos de seguridad:
+
+    ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password by 'mynewpassword';
+
+Procedemos con la instalación
+
     sudo mysql_secure_installation
 
 Nos explicará el medio de validación de contraseñas y nos preguntará si queremos proceder
@@ -67,3 +73,5 @@ Nos devuelve
     Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) :
 
 Escribimos 'Y'
+
+(((No consigo solucionar el problema con ALTER USER y no he encontrado solución aún)))
