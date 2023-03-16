@@ -33,3 +33,4 @@ Tras esto lanzaremos un contenedor con permanecia utilizando un comando como est
 
     sudo docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -v mysql_data:/var/lib/mysql mysql:8.0
 
+(Solución aprtada no ha funcionado)
