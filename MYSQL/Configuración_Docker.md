@@ -19,8 +19,17 @@ Ahora podremos cambia rel plugin de autorizacion lanzando un comando como este s
 
 ## Creación de un contenedor con persistencia de datos
 
-Antes de crear el contenedor 
+Antes de crear el contenedor tenemos que parar el contenedor sin persistencia que hemos creado anteriormente usando: 
 
-Para esto utilizaremos el parámetro -v para crear un volumen de tipo bind_mount:
+    sudo docker ps -a
+    sudo docker stop "Código del contenedor"
+
+
+Para la creación primero utilizaremos el parámetro -v para crear un volumen de tipo bind_mount:
 
     docker -v /home/jpexposito/data:/var/lib/mysql
+
+Tras esto lanzaremos un contenedor con permanecia utilizando un comando como este:
+
+    sudo docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -v mysql_data:/var/lib/mysql mysql:8.0
+
