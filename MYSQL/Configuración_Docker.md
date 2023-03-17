@@ -2,7 +2,7 @@
 
 ## Creación de un contenedor sin persistencia de datos
 
-Para lanzar un contenedor sin persistencia de Docker con MySQL lanzamos un comando como este, sin especificar parámetros:
+Para lanzar un contenedor sin persistencia con Docker de MySQL lanzamos un comando como este, sin especificar parámetros:
 
     sudo docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 mysql:8.0
 
@@ -21,9 +21,7 @@ Ahora podremos cambia rel plugin de autorizacion lanzando un comando como este s
 
 Antes de crear el contenedor tenemos que parar el contenedor sin persistencia que hemos creado anteriormente usando: 
 
-    sudo docker ps -a
-    sudo docker stop "Código del contenedor"
-
+    sudo service mysql stop
 
 Para la creación primero utilizaremos el parámetro -v para crear un volumen de tipo bind_mount:
 
@@ -33,4 +31,12 @@ Tras esto lanzaremos un contenedor con permanecia utilizando un comando como est
 
     sudo docker run -d --rm --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -v mysql_data:/var/lib/mysql mysql:8.0
 
-(Solución aprtada no ha funcionado)
+Para comprobar que nuestor contenedor se está ejecutando podemos lanzar el siguiente comando:
+
+    sudo docker ps
+
+## Detener el contenedor
+
+Para detener el contenedor bastará con lanzar este comando con la ID del dicho, la cual ya hemos visto como encontrar en el paso anterior.
+
+    sudo docker stop <Código del contenedor>
