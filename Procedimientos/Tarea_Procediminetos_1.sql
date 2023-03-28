@@ -52,15 +52,17 @@ FOREIGN KEY("ref_proyecto") REFERENCES "proyecto"("id"),,
 -- Realiza las siguientes consultas:
 
 -- 1. Sacar una relación completa de los científicos asignados a cada proyecto. Mostrar DNI, Nombre del científico, identificador del proyecto y nombre del proyecto.
--- DELIMITER //
+DELIMITER //
 CREATE PROCEDURE relación_cientifico_proyecto
 BEGIN
-  SELECT c. *, p. * FROM proyecto AS p JOIN científico AS c JOIN cientifico_proyecto AS cp ON cp.ref_científico = c.id AND cp.ref_proyecto = p.id;
+  SELECT c.*, p.id, p.nombre
+  FROM proyecto AS p JOIN cientifico AS c JOIN cientifico_proyecto AS cp 
+  ON c.id = cp.ref_cientifico AND cp.ref_proyecto = p.id;
 END 
 //
 
 -- 2. Obtener el número de proyectos al que está asignado cada científico (mostrar el DNI y el nombre).
-DELIMITER //
+DELIMITER $$
 CREATE PROCEDURE cantidad_proyectos(IN referencia_cientifico INT UNSIGNED, OUT cantidad INT UNSIGNED)
 BEGIN
   SELECT COUNT(ref_proyecto)
@@ -68,12 +70,22 @@ BEGIN
   FROM cientifico_proyecto
   WHERE cientifico_proyecto.ref_cientifico = referencia_cientifico
 END 
-//
+$$
+
 -- 3. Obtener el numero de científicos asignados a cada proyecto (mostrar el identificador del proyecto y el nombre del proyecto).
 
 
 -- 4. Obtener el número de horas de dedicación de cada científico.
 
+
 -- 5. Obtener el DNI y nombre de los científicos que se dedican a más de un proyecto y cuya dedicación media a cada proyecto sea superior a un número de horas superior a 10, por ejemplo 11 horas.
 
- 
+DELIMITER //
+CREATE PROCEDURE hardest_working_scientists
+BEGIN
+    SELECT c.id, c.nombre 
+    FROM cientifico AS c JOIN proyecto AS p JOIN cientifico_proyecto AS cp 
+    ON c.id = cp.ref_cientifico AND cp.ref_proyecto = p.id
+    WHERE p.horas > (SELECT avg(horas) FROM proyecto GROUP BY id HAVING avg(horas) > 10);
+END 
+//
