@@ -53,12 +53,11 @@ FOREIGN KEY("ref_proyecto") REFERENCES "proyecto"("id"),,
 
 -- 1. Sacar una relación completa de los científicos asignados a cada proyecto. Mostrar DNI, Nombre del científico, identificador del proyecto y nombre del proyecto.
 -- DELIMITER //
--- CREATE PROCEDURE relación_cientifico_proyecto
--- BEGIN
---   SELECT COUNT(*)
---   FROM pais
--- END 
--- //
+CREATE PROCEDURE relación_cientifico_proyecto
+BEGIN
+  SELECT c. *, p. * FROM proyecto AS p JOIN científico AS c JOIN cientifico_proyecto AS cp ON cp.ref_científico = c.id AND cp.ref_proyecto = p.id;
+END 
+//
 
 -- 2. Obtener el número de proyectos al que está asignado cada científico (mostrar el DNI y el nombre).
 DELIMITER //
