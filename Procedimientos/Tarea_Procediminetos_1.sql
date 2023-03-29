@@ -76,12 +76,21 @@ $$
 
 
 -- 4. Obtener el número de horas de dedicación de cada científico.
-
+DELIMITER //
+CREATE PROCEDURE horas_por_cientifico(IN ref_cientifico VARCHAR, OUT cantidad INT)
+BEGIN
+SELECT SUM(p.horas)
+INTO suma_horas
+FROM cientifico AS c
+LEFT JOIN cientifico_proyecto AS cp ON c.id = cp.ref_cientifico INNER JOIN proyecto AS p ON cp.ref_proyecto = p.id
+GROUP BY c.id
+END
+//
 
 -- 5. Obtener el DNI y nombre de los científicos que se dedican a más de un proyecto y cuya dedicación media a cada proyecto sea superior a un número de horas superior a 10, por ejemplo 11 horas.
 
 DELIMITER //
-CREATE PROCEDURE hardest_working_scientists
+CREATE PROCEDURE cientificos_con_mas_horas
 BEGIN
     SELECT c.id, c.nombre 
     FROM cientifico AS c JOIN proyecto AS p JOIN cientifico_proyecto AS cp 
