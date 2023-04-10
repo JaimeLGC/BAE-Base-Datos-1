@@ -19,7 +19,8 @@ INSERT INTO 'empleado' VALUES('22666666', 'Jose Maria', 'Morales', 400, 3)
 
 -- 3- Elimine el procedimiento llamado pa_empleados_sueldo si existe.
 DELIMITER $$
-DROP PROCEDURE IF EXISTS pa_empleados_sueldo$$
+DROP PROCEDURE IF EXISTS pa_empleados_sueldo
+$$
 
 -- 4- Cree un procedimiento almacenado llamado pa_empleados_sueldo que seleccione los nombres.
 -- 5- Ejecute el procedimiento creado anteriormente.
@@ -34,7 +35,8 @@ $$
 
 --6- Elimine el procedimiento llamado pa_empleados_hijos si existe.
 DELIMITER $$
-DROP PROCEDURE IF EXISTS pa_empleados_hijos$$
+DROP PROCEDURE IF EXISTS pa_empleados_hijos
+$$
 
 -- 7- Cree un procedimiento almacenado llamado pa_empleados_hijos que seleccione los nombres apellidos y cantidad de hijos de los empleados con hijos.
 -- 8- Ejecute el procedimiento creado anteriormente.
@@ -48,4 +50,4 @@ END
 $$
 
 -- 9- Actualice la cantidad de hijos de algún empleado sin hijos y vuelva a ejecutar el procedimiento para verificar que ahora si aparece en la lista.
-UPDATE 'empleado' SET cantidad_hijos = 0 WHERE documento = '22222222'
+UPDATE 'empleado' SET cantidad_hijos = 0 WHERE documento = '22222222' 
