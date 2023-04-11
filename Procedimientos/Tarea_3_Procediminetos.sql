@@ -16,6 +16,7 @@ create database donación;
 --         Admitido. Texto(Si/No).
 --         Sexo. Texto (H/M).
 --         Fecha Última Donación. DateTime.
+
 create table persona( 
 dni CHAR(2) NOT NULL,  
 nombre VARCHAR(20) NOT NULL,  
@@ -52,9 +53,9 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS comprobar_peso$$
 CREATE PROCEDURE comprobar_peso
 BEGIN
-    if peso > 50 then
-        UPDATE persona SET admitido=1 WHERE id=
-else
-   [instrucciones]
+        UPDATE persona SET admitido=1 WHERE peso > 50
 END
 $$
+
+
+-- prueba
