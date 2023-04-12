@@ -28,6 +28,7 @@ PRIMARY KEY(dni)
 );
 
 --     Realiza al menos 10 insert en la tabla, con datos aleatorios, generados por el usuario.
+
 insert into persona values(01, 'Juan', '87', 1, 'M', '2018-04-05');
 insert into persona values(02, 'Ana', '83', 1, 'F', '2021-06-05');
 insert into persona values(03, 'Juana', '73', 1, 'F', '2015-08-08');
@@ -42,6 +43,7 @@ insert into persona values(10, 'Domingo', '49', 0, 'M', NULL);
 --     Realice un procedimiento para determinar si la persona puede donar sangre de acuerdo a las siguientes condiciones:
 --         Si el peso es menor a 50 kg guarde en estado adminito "NO", en caso contrario seria "SI".
 
+-- Se cambian todos los donantes a 'no admitido' para hacer la comprobación
 DELIMITER $$ 
 CREATE PROCEDURE no_admitido_por_defecto
 BEGIN
@@ -49,6 +51,7 @@ BEGIN
 END
 $$
 
+-- Se comprueba quien es apto para donar sangre según su peso
 DELIMITER $$ 
 DROP PROCEDURE IF EXISTS comprobar_peso$$
 CREATE PROCEDURE comprobar_peso
@@ -56,6 +59,3 @@ BEGIN
         UPDATE persona SET admitido=1 WHERE peso > 50
 END
 $$
-
-
--- prueba
