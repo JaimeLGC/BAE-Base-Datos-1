@@ -32,7 +32,7 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS insertar $$
 CREATE PROCEDURE insertar(IN identificador CHAR(8), persona_nombre VARCHAR(20), persona_apellido1 VARCHAR(20) persona_apellido2 VARCHAR(20), persona_peso FLOAT, persona_sexo CHAR(1))
 BEGIN
-INSERT INTO persona VALUES(identificador, persona_nombre, persona_apellido1, persona_apellido2, persona_peso, persona_sexo)
+INSERT INTO persona VALUES(identificador, persona_nombre, persona_apellido1, persona_apellido2, persona_peso, persona_sexo);
 END
 $$
 
