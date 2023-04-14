@@ -1,88 +1,63 @@
--- Una de las preguntas más comunes que se hacen las personas cuando empiezan su vida laboral, suele ser qué es el salario base. Y es que es normal que la gente ande un poco confundida ya que, si no tienes conocimientos en este campo, es fácil hacerse un lío con términos como:
---  Salario base.
---  Base reguladora.
---  Salario bruto.
---  Salario neto.
---  Etc.
+-- Teniendo en cuenta lo que se ha trabajado en la tarea 3 (donación de sangre), se pretende crear una BBDD y una tabla persona. Para ello debe existir una campo, identificador (podría ser el dni como campo único) y quedando la estrucura similar a:
+-- Crea una base datos llamada clientes.
+create database clientes;
 
--- Teniendo en cuenta esta información se pide:
---  Crea una base datos llamada salario.
-create database salario;
-
--- Crea una tabla llamada persona con los siguientes campos:
---      Identificador. (Texto)__(PK)__.
---      Nombre (Texto).
---      Salario_base. (__Escoge el tipo de dato__). 
-
+-- Crea una tabla llamada persona con los siguientes campos indicados y decidiendo los tipos de datos.
 create table persona( 
-id CHAR(2) NOT NULL,  
+dni CHAR(8) NOT NULL,  
 nombre VARCHAR(20) NOT NULL,  
-salario_base FLOAT NOT NULL,
-PRIMARY KEY(id)
+apellido1 VARCHAR(20) NOT NULL,
+apellido2 VARCHAR(20) DEFAULT NULL,
+peso FLOAT NOT NULL,  
+sexo CHAR(1) NOT NULL, 
+PRIMARY KEY(dni)
 );
 
--- Cree una función para cada punto:
---  Función subsidio_transporte: El subsidio de transporte equivale al __7%__ al salario básico.
+-- Realiza al menos 10 insert en la tabla, con datos aleatorios, generados por el usuario.
+INSERT INTO persona  VALUES('22222222', 'Juan', 'Perez', 70, 'H')
+INSERT INTO persona VALUES('22333333', 'Luis', 'Lopez', 90, 'H')
+INSERT INTO persona VALUES('22444444', 'Marta', 'Perez', 76, 'M')
+INSERT INTO persona VALUES('22555555', 'Susana', 'Garcia', 49, 'M')
+INSERT INTO persona VALUES('22666666', 'Jose Maria', 'Morales', 66, 'H')
+INSERT INTO persona VALUES('02222222', 'Juan', 'Perez', 61, 'H')
+INSERT INTO persona VALUES('02333333', 'Luis', 'Lopez', 80, 'H')
+INSERT INTO persona VALUES('02444444', 'Marta', 'Perez', 50, 'M')
+INSERT INTO persona VALUES('02555555', 'Susana', 'Garcia', 99, 'M')
+INSERT INTO persona VALUES('02666666', 'Jose Maria', 'Morales', 100, 'H')
 
-DELIMITER $$ 
-DROP PROCEDURE IF EXISTS subsidio_transporte$$
-CREATE PROCEDURE subsidio_transporte(IN identificador TEXT, OUT transporte FLOAT UNSIGNED)
+
+-- Realice los siguientes procedimientos: Cree procedimientos para los siguientes casos:
+--     Que inserte información en la tabla clientes. Ayuda(recibe los parámetros a insertar).
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insertar $$
+CREATE PROCEDURE insertar(IN identificador CHAR(8), persona_nombre VARCHAR(20), persona_apellido1 VARCHAR(20) persona_apellido2 VARCHAR(20), persona_peso FLOAT, persona_sexo CHAR(1))
 BEGIN
-  SET transporte = (
-    SELECT salario_base * 0,07
-    FROM persona
-    WHERE id = identificador)
+INSERT INTO persona VALUES(identificador, persona_nombre, persona_apellido1, persona_apellido2, persona_peso, persona_sexo)
 END
-$$ 
+$$
 
---  Función __salud__: La salud que corresponde al __4%__ al salario básico.
-
-DELIMITER $$ 
-DROP PROCEDURE IF EXISTS salud$$
-CREATE PROCEDURE salud(IN identificador TEXT, OUT total_salud FLOAT UNSIGNED)
+--     Que actualice el nombre de un cliente. Ayuda (recibe dos parámetros, el identificador aactualizar y el nuevo nombre).
+DELIMITER $$
+DROP PROCEDURE IF EXISTS cambiar_nombre $$
+CREATE PROCEDURE insertar(IN identificador CHAR(8), persona_nombre VARCHAR(20))
 BEGIN
-  SET total_salud = (
-    SELECT salario_base * 0,04
-    FROM persona
-    WHERE id = identificador)
+UPDATE persona
+SET nombre = persona_nombre
+WHERE id = identificador
 END
-$$ 
+$$
 
---  Función __pension__: La pensión que corresponde al __4%__ al salario básico
-
-DELIMITER $$ 
-DROP PROCEDURE IF EXISTS pension$$
-CREATE PROCEDURE pension(IN identificador TEXT, OUT total_pension FLOAT UNSIGNED)
+--     Que elimine un cliente. Ayuda (recibe un parámetro, identificador se va eliminar.
+DELIMITER $$
+DROP PROCEDURE IF EXISTS eliminar_cliente $$
+CREATE PROCEDURE eliminar_cliente(IN identificador CHAR(8))
 BEGIN
-  SET total_pension = (
-    SELECT salario_base * 0,04
-    FROM persona
-    WHERE id = identificador)
+DELETE FROM personas 
+WHERE id = identificador
 END
-$$ 
+$$
 
---  Función __bono__: Un bono que corresponde al __8%__ al salario básico.
+--     Investigar procedimientos con paramentaros de salida.
+ 
 
-DELIMITER $$ 
-DROP PROCEDURE IF EXISTS bono$$
-CREATE PROCEDURE bono(IN identificador TEXT, OUT total_bono FLOAT UNSIGNED)
-BEGIN
-  SET total_bono = (
-    SELECT salario_base * 0,08
-    FROM persona
-    WHERE id = identificador)
-END
-$$ 
-
---  Función __integral__: El salario integral es la ___suma del salario básico - salud - pension + bono + sub de transporte___.
-
-DELIMITER $$ 
-DROP PROCEDURE IF EXISTS integral$$
-CREATE PROCEDURE integral(IN identificador TEXT, OUT salario_integral FLOAT UNSIGNED)
-BEGIN
-  SET salario_integral = (
-    SELECT salario_base - total_salud - total_pension + total_bono + transporte
-    FROM persona
-    WHERE id = identificador)
-END
-$$ 
+--     Investigar cómo hacer un ciclo (while).
