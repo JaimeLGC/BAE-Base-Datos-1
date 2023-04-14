@@ -58,6 +58,4 @@ END
 $$
 
 --     Investigar procedimientos con paramentaros de salida.
- 
-
 --     Investigar cómo hacer un ciclo (while).
