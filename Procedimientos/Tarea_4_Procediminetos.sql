@@ -30,20 +30,20 @@ INSERT INTO persona VALUES('02666666', 'Jose Maria', 'Morales', 100, 'H')
 --     Que inserte información en la tabla clientes. Ayuda(recibe los parámetros a insertar).
 DELIMITER $$
 DROP PROCEDURE IF EXISTS insertar $$
-CREATE PROCEDURE insertar(IN identificador CHAR(8), persona_nombre VARCHAR(20), persona_apellido1 VARCHAR(20) persona_apellido2 VARCHAR(20), persona_peso FLOAT, persona_sexo CHAR(1))
+CREATE PROCEDURE insertar(IN identificador CHAR(8), IN persona_nombre VARCHAR(20), IN persona_apellido1 VARCHAR(20), IN persona_apellido2 VARCHAR(20), IN persona_peso FLOAT, IN persona_sexo CHAR(1))
 BEGIN
-INSERT INTO persona VALUES(identificador, persona_nombre, persona_apellido1, persona_apellido2, persona_peso, persona_sexo);
+    INSERT INTO persona VALUES(identificador, persona_nombre, persona_apellido1, persona_apellido2, persona_peso, persona_sexo);
 END
 $$
 
 --     Que actualice el nombre de un cliente. Ayuda (recibe dos parámetros, el identificador aactualizar y el nuevo nombre).
 DELIMITER $$
 DROP PROCEDURE IF EXISTS cambiar_nombre $$
-CREATE PROCEDURE insertar(IN identificador CHAR(8), persona_nombre VARCHAR(20))
+CREATE PROCEDURE cambiar_nombre(IN identificador CHAR(8), IN persona_nombre VARCHAR(20))
 BEGIN
-UPDATE persona
-SET nombre = persona_nombre
-WHERE id = identificador
+    UPDATE persona
+    SET nombre = persona_nombre
+    WHERE id = identificador;
 END
 $$
 
@@ -52,8 +52,8 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS eliminar_cliente $$
 CREATE PROCEDURE eliminar_cliente(IN identificador CHAR(8))
 BEGIN
-DELETE FROM personas 
-WHERE id = identificador
+    DELETE FROM personas 
+    WHERE id = identificador;
 END
 $$
 
