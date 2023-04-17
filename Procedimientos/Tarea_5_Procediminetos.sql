@@ -22,63 +22,95 @@ salario_base FLOAT DEFAULT NULL,
 PRIMARY KEY(id)
 );
 
+INSERT INTO persona VALUES('1A', 'Ana', 2000);
+
 -- Cree una función para cada punto:
 -- Función subsidio_transporte: El subsidio de transporte equivale al 7% al salario básico.
 DELIMITER $$ 
-DROP PROCEDURE IF EXISTS subsidio_transporte$$
-CREATE PROCEDURE subsidio_transporte(IN identificador CHAR(2), OUT transporte FLOAT UNSIGNED)
+DROP FUNCTION IF EXISTS subsidio_transporte$$
+CREATE FUNCTION subsidio_transporte(identificador CHAR(2)) RETURNS FLOAT
+DETERMINISTIC
 BEGIN
+    DECLARE transporte FLOAT;
+    DECLARE salario_base FLOAT;
     SET transporte = (
-    SELECT salario_base * 0.07
-    FROM persona
+    SELECT p.salario_base * 0.07 FROM persona AS p
     WHERE id = identificador);
+    RETURN transporte;
 END
 $$
+
+SELECT subsidio_transporte('1A');
 
 -- Función salud: La salud que corresponde al 4% al salario básico.
 DELIMITER $$ 
-DROP PROCEDURE IF EXISTS salud$$
-CREATE PROCEDURE salud(IN identificador CHAR(2), OUT total_salud FLOAT UNSIGNED)
+DROP FUNCTION IF EXISTS salud$$
+CREATE FUNCTION salud(identificador CHAR(2)) RETURNS FLOAT
+DETERMINISTIC
 BEGIN
+    DECLARE total_salud FLOAT;
+    DECLARE salario_base FLOAT;
     SET total_salud = (
-    SELECT salario_base * 0.04
-    FROM persona
+    SELECT p.salario_base * 0.04 FROM persona AS p
     WHERE id = identificador);
+    RETURN total_salud;
 END
 $$
+
+SELECT salud('1A');
 
 -- Función pension: La pensión que corresponde al 4% al salario básico
 DELIMITER $$ 
-DROP PROCEDURE IF EXISTS pension$$
-CREATE PROCEDURE pension(IN identificador CHAR(2), OUT total_pension FLOAT UNSIGNED)
+DROP FUNCTION IF EXISTS pension$$
+CREATE FUNCTION pension(identificador CHAR(2)) RETURNS FLOAT
+DETERMINISTIC
 BEGIN
+    DECLARE total_pension FLOAT;
+    DECLARE salario_base FLOAT;
     SET total_pension = (
-    SELECT salario_base * 0.04
-    FROM persona
+    SELECT p.salario_base * 0.04 FROM persona AS p
     WHERE id = identificador);
+    RETURN total_pension;
 END
 $$
+
+SELECT pension('1A');
 
 -- Función bono: Un bono que corresponde al 8% al salario básico.
 DELIMITER $$ 
-DROP PROCEDURE IF EXISTS bono$$
-CREATE PROCEDURE bono(IN identificador CHAR(2), OUT total_bono FLOAT UNSIGNED)
+DROP FUNCTION IF EXISTS bono$$
+CREATE FUNCTION bono(identificador CHAR(2)) RETURNS FLOAT
+DETERMINISTIC
 BEGIN
+    DECLARE total_bono FLOAT;
+    DECLARE salario_base FLOAT;
     SET total_bono = (
-    SELECT salario_base * 0.08
-    FROM persona
+    SELECT p.salario_base * 0.08 FROM persona AS p
     WHERE id = identificador);
+    RETURN total_bono;
 END
 $$
 
+SELECT bono('1A');
+
 -- Función integral: El salario integral es la suma del salario básico - salud - pension + bono + sub de transporte___.
 DELIMITER $$ 
-DROP PROCEDURE IF EXISTS integral$$
-CREATE PROCEDURE integral(IN identificador CHAR(2), OUT total_integral FLOAT UNSIGNED)
+DROP FUNCTION IF EXISTS integral$$
+CREATE FUNCTION integral(identificador CHAR(2)) RETURNS FLOAT
+DETERMINISTIC
 BEGIN
+    DECLARE total_integral FLOAT;
+    DECLARE salario_base FLOAT;
+    DECLARE total_salud FLOAT;
+    DECLARE total_bono FLOAT;
+    DECLARE total_pension FLOAT;
+    DECLARE transporte FLOAT;
     SET total_integral = (
-    SELECT salario_base - total_salud - total_pension + total_bono + transporte
-    FROM persona
+    SELECT p.salario_base - salud(identificador) - pension(identificador) + bono(identificador) + subsidio_transporte(identificador)
+    FROM persona AS p
     WHERE id = identificador);
+    RETURN total_integral;
 END
 $$
+
+SELECT integral('1A');
