@@ -33,10 +33,9 @@ DETERMINISTIC
 BEGIN
     DECLARE transporte FLOAT;
     DECLARE salario_base FLOAT;
-    SET transporte = (
+    RETURN (
     SELECT p.salario_base * 0.07 FROM persona AS p
     WHERE id = identificador);
-    RETURN transporte;
 END
 $$
 
@@ -50,10 +49,9 @@ DETERMINISTIC
 BEGIN
     DECLARE total_salud FLOAT;
     DECLARE salario_base FLOAT;
-    SET total_salud = (
+    RETURN (
     SELECT p.salario_base * 0.04 FROM persona AS p
     WHERE id = identificador);
-    RETURN total_salud;
 END
 $$
 
@@ -67,10 +65,9 @@ DETERMINISTIC
 BEGIN
     DECLARE total_pension FLOAT;
     DECLARE salario_base FLOAT;
-    SET total_pension = (
+    RETURN (
     SELECT p.salario_base * 0.04 FROM persona AS p
     WHERE id = identificador);
-    RETURN total_pension;
 END
 $$
 
@@ -84,10 +81,9 @@ DETERMINISTIC
 BEGIN
     DECLARE total_bono FLOAT;
     DECLARE salario_base FLOAT;
-    SET total_bono = (
+    RETURN  (
     SELECT p.salario_base * 0.08 FROM persona AS p
     WHERE id = identificador);
-    RETURN total_bono;
 END
 $$
 
@@ -100,16 +96,11 @@ CREATE FUNCTION integral(identificador CHAR(2)) RETURNS FLOAT
 DETERMINISTIC
 BEGIN
     DECLARE total_integral FLOAT;
-    DECLARE salario_base FLOAT;
-    DECLARE total_salud FLOAT;
-    DECLARE total_bono FLOAT;
-    DECLARE total_pension FLOAT;
-    DECLARE transporte FLOAT;
-    SET total_integral = (
-    SELECT p.salario_base - salud(identificador) - pension(identificador) + bono(identificador) + subsidio_transporte(identificador)
+    RETURN (
+    SELECT p.salario_base - salud(identificador) - pension(identificador) + bono(identificador) + 
+            subsidio_transporte(identificador)
     FROM persona AS p
     WHERE id = identificador);
-    RETURN total_integral;
 END
 $$
 
