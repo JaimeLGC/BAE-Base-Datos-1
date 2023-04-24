@@ -40,90 +40,77 @@ INSERT INTO persona VALUES('1A', 'Ana', 2000);
 
 -- Cree una función para cada punto teniendo en cuenta que:
 --     Función subsidio_transporte: El subsidio de transporte equivale al 7% al salario básico. Actualiza el valor en la tabla.
-DELIMITER $$ 
-DROP FUNCTION IF EXISTS subsidio_transporte$$
-CREATE FUNCTION subsidio_transporte(identificador CHAR(2)) RETURNS FLOAT
+DELIMITER $$
+CREATE FUNCTION subsidio_transporte (identificador CHAR(2)) RETURNS FLOAT
 DETERMINISTIC
 BEGIN
-    DECLARE transporte FLOAT;
-    DECLARE salario_base FLOAT;
-    UPDATE persona SET transporte = (
-    SELECT p.salario_base * 0.07 FROM persona AS p
-    WHERE id = identificador)
-    WHERE id = identificador
+    DECLARE subsidio_transporte FLOAT;
+    SET subsidio_transporte = (SELECT salario_base * 0.07 FROM persona where id = identificador);
+    UPDATE persona SET subsidio = subsidio_transporte WHERE identificador = id;
+    RETURN subsidio;
 END
 $$
 
 SELECT * FROM persona WHERE id = '1A';
 
 --     Función salud: La salud que corresponde al 4% al salario básico. Actualiza el valor en la tabla.
-DELIMITER $$ 
-DROP FUNCTION IF EXISTS salud$$
-CREATE FUNCTION salud(identificador CHAR(2)) RETURNS FLOAT
+DELIMITER $$
+CREATE FUNCTION salud (identificador CHAR(2)) RETURNS FLOAT
 DETERMINISTIC
 BEGIN
     DECLARE total_salud FLOAT;
-    DECLARE salario_base FLOAT;
-    UPDATE persona SET salud = (
-    SELECT p.salario_base * 0.04 FROM persona AS p
-    WHERE id = identificador)
-    WHERE id = identificador
+    SET total_salud = (SELECT salario_base * 0.04 FROM persona where id = identificador);
+    UPDATE persona SET salud = total_salud WHERE identificador = id;
+    RETURN salud;
 END
 $$
 
 SELECT * FROM persona WHERE id = '1A';
 
 --     Función pension: La pensión que corresponde al 4% al salario básico. Actualiza el valor en la tabla.
-DELIMITER $$ 
-DROP FUNCTION IF EXISTS pension$$
-CREATE FUNCTION pension(identificador CHAR(2)) RETURNS FLOAT
+DELIMITER $$
+CREATE FUNCTION pension (identificador CHAR(2)) RETURNS FLOAT
 DETERMINISTIC
 BEGIN
     DECLARE total_pension FLOAT;
-    DECLARE salario_base FLOAT;
-    UPDATE persona SET pension = (
-    SELECT p.salario_base * 0.04 FROM persona AS p
-    WHERE id = identificador)
-    WHERE id = identificador
+    SET total_pension = (SELECT salario_base * 0.04 FROM persona where id = identificador);
+    UPDATE persona SET pension = total_pension WHERE identificador = id;
+    RETURN pension;
 END
 $$
 
 SELECT * FROM persona WHERE id = '1A';
 
 --     Función bono: Un bono que corresponde al 8% al salario básico. Actualiza el valor en la tabla.
-DELIMITER $$ 
-DROP FUNCTION IF EXISTS bono$$
-CREATE FUNCTION bono(identificador CHAR(2)) RETURNS FLOAT
+DELIMITER $$
+CREATE FUNCTION bono (identificador CHAR(2)) RETURNS FLOAT
 DETERMINISTIC
 BEGIN
     DECLARE total_bono FLOAT;
-    DECLARE salario_base FLOAT;
-    UPDATE persona SET bono = (
-    SELECT p.salario_base * 0.08 FROM persona AS p
-    WHERE id = identificador)
-    WHERE id = identificador
+    SET total_bono = (SELECT salario_base * 0.08 FROM persona where id = identificador);
+    UPDATE persona SET bono = total_bono WHERE identificador = id;
+    RETURN bono;
 END
 $$
 
 SELECT * FROM persona WHERE id = '1A';
 
 --     Función integral: El salario integral es la suma del salario básico - salud - pension + bono + sub de transporte. Actualiza el valor en la tabla.
-DELIMITER $$ 
-DROP FUNCTION IF EXISTS integral$$
-CREATE FUNCTION integral(identificador CHAR(2)) RETURNS FLOAT
-DETERMINISTIC
-BEGIN
-    DECLARE total_integral FLOAT;
-    UPDATE persona SET integral = (
-    SELECT p.salario_base - salud(identificador) - pension(identificador) + bono(identificador) + 
-            subsidio_transporte(identificador)
-    FROM persona AS p
-    WHERE id = identificador)
-    WHERE id = identificador
-END
-$$
+-- DELIMITER $$ 
+-- DROP FUNCTION IF EXISTS integral$$
+-- CREATE FUNCTION integral(identificador CHAR(2)) RETURNS FLOAT
+-- DETERMINISTIC
+-- BEGIN
+--     DECLARE total_integral FLOAT;
+--     UPDATE persona SET integral = (
+--     SELECT p.salario_base - salud(identificador) - pension(identificador) + bono(identificador) + 
+--             subsidio_transporte(identificador)
+--     FROM persona AS p
+--     WHERE id = identificador)
+--     WHERE id = identificador
+-- END
+-- $$
 
-SELECT * FROM persona WHERE id = '1A';
 
 --     Crea cada uno de las funciones anteriores para una persona en específico.
 
