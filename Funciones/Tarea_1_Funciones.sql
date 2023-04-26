@@ -31,8 +31,6 @@ DROP FUNCTION IF EXISTS subsidio_transporte$$
 CREATE FUNCTION subsidio_transporte(identificador CHAR(2)) RETURNS FLOAT
 DETERMINISTIC
 BEGIN
-    DECLARE transporte FLOAT;
-    DECLARE salario_base FLOAT;
     RETURN (
     SELECT p.salario_base * 0.07 FROM persona AS p
     WHERE id = identificador);

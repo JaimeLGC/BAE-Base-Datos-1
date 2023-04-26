@@ -38,6 +38,22 @@ INSERT INTO persona VALUES('1A', 'Ana', 2000);
 -- Creación de un procedimiento de forma aleatoria con las siguientes características:
 --     Parámetro de entrada el número de registros (Mínimo 10, y realiza la prueba varias veces).
 
+DELIMITER $$
+drop procedure if exist insertar_persona$$
+create procedure insertar_persona(IN nombre VARCHAR(55), IN inserts int)
+BEGIN
+    declare total int;
+    declare contador int;
+    set total = (select count(*) from persona);
+    set contador = 0;
+    while contador < inserts do
+        set total=total+1;
+        INSERT INTO persona(identificador, nombre, salario_base) VALUES(LPAD(CONCAT(total, 'A'), 12, 0), CONCAT(nombre, total), total + 1000.50);
+        set contador = contador+1;
+    end while;
+END
+$$
+
 -- Cree una función para cada punto teniendo en cuenta que:
 --     Función subsidio_transporte: El subsidio de transporte equivale al 7% al salario básico. Actualiza el valor en la tabla.
 DELIMITER $$
@@ -95,23 +111,46 @@ $$
 
 SELECT * FROM persona WHERE id = '1A';
 
---     Función integral: El salario integral es la suma del salario básico - salud - pension + bono + sub de transporte. Actualiza el valor en la tabla.
--- DELIMITER $$ 
--- DROP FUNCTION IF EXISTS integral$$
--- CREATE FUNCTION integral(identificador CHAR(2)) RETURNS FLOAT
--- DETERMINISTIC
--- BEGIN
---     DECLARE total_integral FLOAT;
---     UPDATE persona SET integral = (
---     SELECT p.salario_base - salud(identificador) - pension(identificador) + bono(identificador) + 
---             subsidio_transporte(identificador)
---     FROM persona AS p
---     WHERE id = identificador)
---     WHERE id = identificador
--- END
--- $$
+-- integral
 
+DELIMITER //
+CREATE FUNCTION integral(id_persona VARCHAR(55)) RETURNS FLOAT;
+DETERMINISTIC
+BEGIN
+    declare salario float;
+    declare subsidio float;
+    declare salud float;
+    declare pension float;
+    declare bono float;
+    declare integral float;
+    set salario = (select salario_base from persona where identificador = id_persona);
+    set subsidio = subsidio(id_persona);
+    set salud = salud(id_persona);
+    set pension = pension(id_persona);
+    set bono = bono(id_persona);
+    set integral = salario - pension - salud + bono + subsidio;
+    UPDATE persona set integral = integral;
+    return integral;
+END
 
---     Crea cada uno de las funciones anteriores para una persona en específico.
-
---     El parámetro de entrada debe de ser un identificar de la persona.
+--- Todo en una función:
+DELIMITER //
+CREATE FUNCTION integral(id_persona VARCHAR(55)) RETURNS FLOAT;
+DETERMINISTIC
+BEGIN
+    declare salario float;
+    declare subsidio float;
+    declare salud float;
+    declare pension float;
+    declare bono float;
+    declare integral float;
+    set salario = (select salario_base from persona where identificador = id_persona);
+    set subsidio = salario * 0.07;
+    set salud = salario * 0.04;
+    set pension = salario * 0.04;
+    set bono = salario * 0.08;
+    set integral = salario - pension - salud + bono + subsidio;
+    UPDATE persona set integral = integral;
+    return integral;
+END
+//

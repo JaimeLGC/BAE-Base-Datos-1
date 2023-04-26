@@ -47,7 +47,9 @@ insert into persona values(10, 'Domingo', '49', 0, 'M', NULL);
 DELIMITER $$ 
 CREATE PROCEDURE no_admitido_por_defecto
 BEGIN
-    UPDATE persona SET admitido = 0 WHERE id = NOT NULL;
+    UPDATE persona 
+    ET admitido = 0 
+    WHERE id = NOT NULL;
 END
 $$
 
@@ -56,6 +58,32 @@ DELIMITER $$
 DROP PROCEDURE IF EXISTS comprobar_peso$$
 CREATE PROCEDURE comprobar_peso
 BEGIN
-        UPDATE persona SET admitido=1 WHERE peso > 50
+        UPDATE persona 
+        SET admitido=1 
+        WHERE peso > 50
 END
+$$
+
+--- Versión que actualiza directamente a todos los donantes
+DELIMITER $$
+create procedure donante_apto()
+BEGIN
+    UPDATE persona
+    set admitido = 'No'
+    where peso<50;
+end
+$$
+
+--- Versión con personas en concreto:
+DELIMITER $$
+create procedure actualzia_donante(IN persona_id INT, IN peso_minimo INT)
+BEGIN
+    declare peso_persona int;
+    set peso_persona = (SELECT peso from persona where id = persona_id);
+    if peso_persona > peso_minimo then
+        UPDATE persona set admitido = 'Si' where id = persona_id;
+    else
+        UPDATE persona set admitido = 'No' where id = persona_id;
+    end if;
+end
 $$

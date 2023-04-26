@@ -33,6 +33,16 @@ BEGIN
 END
 $$
 
+DELIMITER $$
+DROP PROCEDURE IF EXIST pa_empleados_sueldo$$
+CREATE PROCEDURE pa_empleados_sueldo
+BEGIN
+    SELECT nombre from empleado;
+END
+$$
+
+CALL pa_empleados_sueldo()
+
 --6- Elimine el procedimiento llamado pa_empleados_hijos si existe.
 DELIMITER $$
 DROP PROCEDURE IF EXISTS pa_empleados_hijos
@@ -46,6 +56,15 @@ BEGIN
     SELECT cantidad_hijos
     INTO hijos_empleado
     FROM empleado
+END
+$$
+
+DELIMITER $$
+DROP PROCEDURE IF EXIST pa_empleados_hijos$$
+CREATE PROCEDURE pa_empleados_hijos
+BEGIN
+    SELECT nombre, apellido, cantidadhijos from empleado
+    where cantidadhijos > 0;
 END
 $$
 
