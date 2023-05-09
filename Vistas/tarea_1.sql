@@ -2934,20 +2934,94 @@ city = 'Valencia');
 +----------+
 */
 --         ¿Cuántos countries hay que empiezan por a?
-
+select count(*) from country;
+/*
++----------+
+| count(*) |
++----------+
+|      109 |
++----------+
+*/
 --         Media de duración de peliculas con PG.
-
+select avg(length) from film where rating = 'PG';
+/*
++-------------+
+| avg(length) |
++-------------+
+|    112.0052 |
++-------------+
+*/
 --         Suma de rental_rate de todas las peliculas.
-
+select sum(rental_rate) from film;
+/*
++------------------+
+| sum(rental_rate) |
++------------------+
+|          2980.00 |
++------------------+
+*/
 --         Pelicula con mayor duración.
-
+select title from film where length = (select max(length) from film);
+/*
++--------------------+
+| title              |
++--------------------+
+| CHICAGO NORTH      |
+| CONTROL ANTHEM     |
+| DARN FORRESTER     |
+| GANGS PRIDE        |
+| HOME PITY          |
+| MUSCLE BRIGHT      |
+| POND SEATTLE       |
+| SOLDIERS EVOLUTION |
+| SWEET BROTHERHOOD  |
+| WORST BANGER       |
++--------------------+
+*/
 --         Película con menor duración.
-
+select title from film where length = (select min(length) from film);
+/*
++---------------------+
+| title               |
++---------------------+
+| ALIEN CENTER        |
+| IRON MOON           |
+| KWAI HOMEWARD       |
+| LABYRINTH LEAGUE    |
+| RIDGEMONT SUBMARINE |
++---------------------+
+*/
 --         Mostrar las ciudades del country Spain (multitabla).
-select * from city where country_id = (select country_id from city where
-city = 'Valencia');
+select city from city join country as c on c.country_id = city.country_id where country = 'Spain';
+/*
++-------------------------+
+| city                    |
++-------------------------+
+| A Coruña (La Coruña)    |
+| Donostia-San Sebastián  |
+| Gijón                   |
+| Ourense (Orense)        |
+| Santiago de Compostela  |
++-------------------------+
+*/
 --         Mostrar el nombre de la película y el nombre de los actores.
-
+select a.first_name, f.title from actor as a join film_actor as fa join film as f on a.actor_id = fa.actor_id and fa.film_id = f.film_id limit 10;
+/*
++------------+-----------------------+
+| first_name | title                 |
++------------+-----------------------+
+| PENELOPE   | ACADEMY DINOSAUR      |
+| PENELOPE   | ANACONDA CONFESSIONS  |
+| PENELOPE   | ANGELS LIFE           |
+| PENELOPE   | BULWORTH COMMANDMENTS |
+| PENELOPE   | CHEAPER CLYDE         |
+| PENELOPE   | COLOR PHILADELPHIA    |
+| PENELOPE   | ELEPHANT TROJAN       |
+| PENELOPE   | GLEAMING JAWBREAKER   |
+| PENELOPE   | HUMAN GRAFFITI        |
+| PENELOPE   | KING EVOLUTION        |
++------------+-----------------------+
+*/
 --         Mostrar el nombre de la película y el de sus categorías.
 
 --         Mostrar el country, la ciudad y dirección de cada miembro del staff.
@@ -3014,3 +3088,7 @@ city = 'Valencia');
 
 --     Muestra el resultado de la consulta de las vistas que se proporcionan.
 --     Crea 5 vistas sobre la BBDD, y realizar la consulta, para mostrar los resultados. Las vistas deben de tener 3 o más tablas de la BBDD.
+
+
+
+¡
