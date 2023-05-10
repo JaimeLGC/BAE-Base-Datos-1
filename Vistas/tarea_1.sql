@@ -680,16 +680,16 @@ FROM film LEFT JOIN film_actor
     ON film_actor.film_id = actor.actor_id
 GROUP BY AN;
 
-CREATE VIEW top_ten AS
+CREATE VIEW ten AS
 SELECT 
-film.title as FT,
-category.name as CN,
-language.name as LN
+    film.title as FT,
+    category.name as CN,
+    language.name as LN
 FROM film LEFT JOIN film_category
-ON film.film_id = film_category.film_id 
-LEFT JOIN category
-ON film_category.film_id  = category.category_id
-JOIN language
-ON film.film_id = language.language_id
+    ON film.film_id = film_category.film_id 
+    LEFT JOIN category
+    ON film_category.film_id  = category.category_id
+    JOIN language
+    ON film.film_id = language.language_id
 GROUP BY FT
 LIMIT 10;
