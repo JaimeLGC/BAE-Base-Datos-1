@@ -45,13 +45,13 @@ inscripción).
         ```sql
         SHOW INDEX FROM alumno;
         +--------+------------+-----------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
-| Table  | Non_unique | Key_name  | Seq_in_index | Column_name        | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
-+--------+------------+-----------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
-| alumno |          0 | PRIMARY   |            1 | numero_inscripcion | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
-| alumno |          0 | PRIMARY   |            2 | año_inscripcion    | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
-| alumno |          0 | domicilio |            1 | domicilio          | A         |           0 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
-+--------+------------+-----------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
-3 rows in set (0,00 sec)
+        | Table  | Non_unique | Key_name  | Seq_in_index | Column_name        | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
+        +--------+------------+-----------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+        | alumno |          0 | PRIMARY   |            1 | numero_inscripcion | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+        | alumno |          0 | PRIMARY   |            2 | año_inscripcion    | A         |           0 |     NULL |   NULL |      | BTREE      |         |               | YES     | NULL       |
+        | alumno |          0 | domicilio |            1 | domicilio          | A         |           0 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
+        +--------+------------+-----------+--------------+--------------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+        3 rows in set (0,00 sec)
 
         ```
         
