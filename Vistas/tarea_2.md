@@ -14,12 +14,12 @@ Un instituto de enseñanza guarda los siguientes datos de sus alumnos:
 
 Se pide: 
 - Elimine la tabla "alumno" si existe. 
-'''sql
+```sql
     DROP TABLE IF EXISTS alumno;
-'''
+```
 - Cree la tabla definiendo una clave primaria compuesta (año de inscripción y número de 
 inscripción).
-'''sql
+```sql
     CREATE TABLE alumno(
         numero_inscripcion integer,
         año_inscripcion integer,
@@ -31,7 +31,7 @@ inscripción).
     );
     Query OK, 0 rows affected (0,01 sec)
 
-'''
+```
 - Define los siguientes indices:
    - Un índice único por el campo "documento" y un índice común por ciudad y provincia.
         '''sql
