@@ -40,6 +40,14 @@ inscripción).
         ALTER TABLE alumno ADD UNIQUE domicilio (domicilio);
         Query OK, 0 rows affected (0,01 sec)
         Records: 0  Duplicates: 0  Warnings: 0
+
+        CREATE INDEX ciudad on alumno(ciudad);
+        Query OK, 0 rows affected (0,01 sec)
+        Records: 0  Duplicates: 0  Warnings: 0
+
+        CREATE INDEX provincia on alumno(provincia);
+        Query OK, 0 rows affected (0,01 sec)
+        Records: 0  Duplicates: 0  Warnings: 0
         ```
     - Vea los índices de la tabla.
         ```sql
