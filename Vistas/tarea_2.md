@@ -62,26 +62,5 @@ inscripción).
         3 rows in set (0,00 sec)
 
         ```
-        
-- Genera un procedimiento que realice la inserción de 5 registros, al menos 2 veces, de forma aleatoria.
-    ```sql
-
-    ```
-- Intente ingresar un alumno con clave primaria repetida.
-    ```sql
-
-    ```
-- Intente ingresar un alumno con documento repetido.
-    ```sql
-    
-    ```
-- Ingrese varios alumnos de la misma ciudad y provincia.
-    ```sql
-    
-    ```
-- Elimina los indices creados, y muestra que ya no se encuentran.
-    ```sql
-    
-    ```
 
 </div>
