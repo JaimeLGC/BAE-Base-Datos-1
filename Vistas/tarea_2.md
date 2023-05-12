@@ -32,14 +32,14 @@ inscripción).
         PRIMARY KEY (numero_inscripcion, año_inscripcion)
     );
     Query OK, 0 rows affected (0,01 sec)
-
 ```
 - Define los siguientes indices:
    - Un índice único por el campo "documento" y un índice común por ciudad y provincia.
         ```sql
-        ALTER TABLE alumno ADD UNIQUE domicilio (domicilio);
-        Query OK, 0 rows affected (0,01 sec)
+        CREATE INDEX domicilio ON alumno (domicilio);
+        Query OK, 0 rows affected (0,04 sec)
         Records: 0  Duplicates: 0  Warnings: 0
+
 
         CREATE INDEX ciudad on alumno(ciudad);
         Query OK, 0 rows affected (0,01 sec)
